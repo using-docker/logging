@@ -1,0 +1,14 @@
+identidock:
+  image: amouat/identidock:1.0
+  ports:
+   - "5000:5000"
+   - "9000:9000"
+  environment:
+    ENV: DEV 
+  links:
+    - dnmonster
+    - redis
+dnmonster:
+  image: amouat/dnmonster:1.0
+redis:
+  image: redis:3
