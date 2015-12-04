@@ -25,3 +25,13 @@ logspout:
     - /var/run/docker.sock:/tmp/docker.sock
   ports:
     - "8000:80"
+  links:
+    - logstash
+  command: logstash://logstash:5000
+logstash:
+  image: logstash
+  volumes: 
+    - ./logstash.conf:/etc/logstash.conf
+  environment:
+    LOGSPOUT: ignore
+  command: -f /etc/logstash.conf
