@@ -15,13 +15,13 @@ identidock:
   environment:
     ENV: PROD
 dnmonster:
-  image: amouat/dnmonster
+  image: amouat/dnmonster:1.0
 redis:
-  image: redis
+  image: redis:3
 
 logspout:
-  image: amouat/logspout-logstash
+  image: amouat/logspout-logstash:1.0
   volumes:
-    - /var/run/docker.sock:/tmp/docker.sock
+    - /var/run/docker.sock:/var/run/docker.sock
   ports:
     - "8000:80"
