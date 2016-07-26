@@ -35,5 +35,22 @@ logstash:
     - ./logstash.conf:/etc/logstash.conf
   environment:
     LOGSPOUT: ignore
+  links:
+    - elasticsearch
   command: -f /etc/logstash.conf
+
+elasticsearch:
+  image: elasticsearch:2.3
+  environment:
+    LOGSPOUT: ignore
+
+kibana:
+  image: kibana:4.5 
+  environment:
+    LOGSPOUT: ignore
+    ELASTICSEARCH_URL: http://elasticsearch:9200
+  links:
+    - elasticsearch
+  ports:
+    - "5601:5601"
 
